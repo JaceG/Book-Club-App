@@ -27,11 +27,13 @@ export default function Home() {
 
     try {
       const response = await fetch(`/api/books/location?lat=${lat}&lng=${lng}`)
-      const data = await response.json()
-
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to fetch books')
+        const errorData = await response.json()
+        throw new Error(
+          errorData.error || `HTTP error! status: ${response.status}`
+        )
       }
+      const data = await response.json()
 
       if (data.items && data.items.length > 0) {
         setBooks(data.items)
@@ -58,11 +60,13 @@ export default function Home() {
       const response = await fetch(
         `/api/books/category?category=${encodeURIComponent(category)}`
       )
-      const data = await response.json()
-
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to fetch books')
+        const errorData = await response.json()
+        throw new Error(
+          errorData.error || `HTTP error! status: ${response.status}`
+        )
       }
+      const data = await response.json()
 
       if (data.items && data.items.length > 0) {
         setBooks(data.items)
