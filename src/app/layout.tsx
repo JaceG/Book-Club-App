@@ -6,12 +6,6 @@ import Footer from '../components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
-  title: 'Book Club App',
-  description:
-    'Discover, discuss, and vote on books with your literary community',
-}
-
 export default function RootLayout({
   children,
 }: {
